@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Africa: Cities &amp; Civilizations Tour</title>
+<link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.145/Build/Cesium/Widgets/widgets.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <p class="kicker">ALVERNIA · AI 101 · TOUR + FLIGHT LAB</p>
+  <h1>Africa: Cities &amp; Civilizations</h1>
+  <p>A virtual tour and simulated flight over Google Photorealistic 3D Tiles: twelve places, from Giza (c. 2600&nbsp;BC) to Kigali, that show the continent's long record of building cities, universities and monuments.</p>
+</header>
+
+<main>
+  <section aria-label="Tour and flight panel" class="panel">
+    <div class="modes" role="group" aria-label="Mode">
+      <button id="modeTour" aria-pressed="true">Guided tour</button>
+      <button id="modeFlight" aria-pressed="false">Free flight</button>
+    </div>
+    <p id="message" role="status">Loading…</p>
+
+    <!-- GUIDED TOUR -->
+    <div id="tourPanel">
+      <p id="count" class="count"></p>
+      <p id="chips" class="chips"></p>
+      <h2 id="name"></h2>
+      <img id="photo" hidden alt="">
+      <p id="desc"></p>
+      <p id="explore" class="explore"></p>
+      <p id="source" class="muted"></p>
+      <div class="buttons">
+        <button id="prev">◀ Previous</button>
+        <button id="next">Next stop ▶</button>
+      </div>
+      <div class="auto">
+        <button id="auto" aria-pressed="false">▶ Auto-tour</button>
+        <label for="interval">Pace</label>
+        <select id="interval">
+          <option value="15">Fast (15 s per stop)</option>
+          <option value="25" selected>Normal (25 s per stop)</option>
+          <option value="40">Slow (40 s per stop)</option>
+        </select>
+        <span id="countdown" class="muted" aria-live="off"></span>
+      </div>
+      <h3>All stops</h3>
+      <ol id="stoplist" class="stoplist"></ol>
+    </div>
+
+    <!-- FREE FLIGHT -->
+    <div id="flightPanel" hidden>
+      <h2>Free flight</h2>
+      <p>Simulated movement starting at the stop you last viewed. This is a steerable point, not an aircraft model: no lift, drag, bank or collision.</p>
+      <div class="buttons">
+        <button id="fly">Fly</button><button id="pause">Pause</button><button id="reset">Reset</button>
+        <button id="left">Left 10°</button><button id="right">Right 10°</button>
+      </div>
+      <label for="speed">Speed (meters per second)</label>
+      <input id="speed" type="number" min="0" max="250" step="10" value="70">
+      <label for="height">Height above local ground (meters)</label>
+      <input id="height" type="number" min="50" max="5000" step="50" value="500">
+      <p id="readout" class="readout"></p>
+      <p id="nearest" class="muted"></p>
+      <p class="muted">Keys: ← / A turn left, → / D turn right (when no field is focused). Pause before orbiting the view with the mouse.</p>
+    </div>
+
+    <div id="problems" class="problems" role="alert"></div>
+    <p><a href="tests.html">Run tour tests</a></p>
+  </section>
+
+  <div id="globe" aria-label="Interactive 3D globe showing tour stops"></div>
+</main>
+
+<footer>
+  <p>Virtual tour only: a camera flight is not a walking route, travel time or accessibility guide. 3D scans are © Google and their attributions appear on the globe; scan dates vary by place, so newer buildings may be missing and detail differs from site to site. If no Google key is set in <code>config.js</code> the globe falls back to a plain grid. Facts come from the sources listed under each stop (checked 2026-10-05); verify before you share.</p>
+</footer>
+
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.145/Build/Cesium/Cesium.js"></script>
+<script src="places.js"></script>
+<script src="config.js"></script>
+<script src="tour-core.js"></script>
+<script src="flight-core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
